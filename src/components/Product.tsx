@@ -29,14 +29,14 @@ export const Product = ({
       {product.discountRate > 0 && (
         <DiscountBox>
           <img src={Badge} alt='badge' />
-          <span>30%</span>
+          <span>{product.discountRate}%</span>
         </DiscountBox>
       )}
     </ProductBox>
   );
 };
 
-const ProductBox = styled.div`
+const ProductBox = styled.li`
   position: relative;
   flex-shrink: 0;
   width: 6rem;

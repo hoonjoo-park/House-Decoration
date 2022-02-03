@@ -1,6 +1,7 @@
-import { ApiInterface, ProductType } from 'constants/';
+import { ProductType } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
+import { ToggleBox } from './ToggleBox';
 import { ToolTip } from './ToolTip';
 
 interface Props {
@@ -17,13 +18,15 @@ export const RoomImage = ({
   return (
     <ImageContainer>
       <img src={apiData.imageUrl} alt='img' />
-      {apiData.productList.map((list) => (
-        <ToolTip
-          key={list.productId}
-          product={list}
-          currentProduct={currentProduct}
-          setCurrentProduct={setCurrentProduct}
-        />
+      {apiData.productList.map((list, i) => (
+        <>
+          <ToolTip
+            key={list.productId}
+            product={list}
+            currentProduct={currentProduct}
+            setCurrentProduct={setCurrentProduct}
+          />
+        </>
       ))}
     </ImageContainer>
   );
@@ -34,7 +37,7 @@ const ImageContainer = styled.div`
   display: flex;
   width: 100%;
   border-radius: 5px;
-  img {
+  & > img {
     width: 100%;
     height: 100%;
     border-radius: 5px 5px 0 0;

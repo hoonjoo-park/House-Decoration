@@ -4,6 +4,11 @@ export const API = 'https://cdn.ggumim.co.kr/test/image_product_link.json';
 
 export const API_DATA = axios.get(API);
 
+export const PRODUCT_WIDTH = 6;
+export const PRODUCT_MARGIN = 1;
+export const IMAGE_WIDTH = 608;
+export const IMAGE_HEIGHT = 758;
+
 export type ProductType = {
   discountRate: number;
   imageUrl: string;
