@@ -1,5 +1,5 @@
 import { ProductType, PRODUCT_MARGIN, PRODUCT_WIDTH } from 'constants/';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Product } from './Product';
 
@@ -19,7 +19,9 @@ export const ProductList = ({
   setCurrentProduct,
 }: Props) => {
   const [distance, setDistance] = useState(0);
-
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   useEffect(() => {
     const index =
       currentProduct === 0
@@ -34,9 +36,31 @@ export const ProductList = ({
         : (PRODUCT_MARGIN + PRODUCT_WIDTH) * index;
     setDistance(distance);
   }, [apiData.productList, currentProduct]);
-
+  const containerRef: any = useRef();
+  const handleDown = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setIsDown(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+  const handleUp = () => {
+    setIsDown(false);
+  };
+  const handleMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const mouseMoved = e.pageX - containerRef.current.offsetLeft;
+    const toMove = mouseMoved - startX;
+    containerRef.current.scrollLeft = scrollLeft - toMove;
+  };
   return (
-    <ListContainer>
+    <ListContainer
+      ref={containerRef}
+      onMouseLeave={handleUp}
+      onMouseUp={handleUp}
+      onMouseDown={(e) => handleDown(e)}
+      onMouseMove={(e) => handleMove(e)}
+    >
       <ListUl distance={distance}>
         {apiData.productList.map((list) => (
           <Product
@@ -55,7 +79,10 @@ const ListContainer = styled.div`
   width: 100%;
   height: 8rem;
   border-radius: 0 0 5px 5px;
-  overflow: hidden;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ListUl = styled.ul<{ distance: number }>`
