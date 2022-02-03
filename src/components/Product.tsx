@@ -13,9 +13,17 @@ export const Product = ({
   currentProduct,
   setCurrentProduct,
 }: Props) => {
+  const handleClick = () => {
+    if (product.productId === currentProduct) {
+      setCurrentProduct(0);
+      return;
+    }
+    setCurrentProduct(product.productId);
+  };
   return (
     <ProductBox
       className={product.productId === currentProduct ? 'active' : ''}
+      onClick={handleClick}
     >
       <img src={product.imageUrl} alt='productImage' />
       {product.discountRate > 0 && (

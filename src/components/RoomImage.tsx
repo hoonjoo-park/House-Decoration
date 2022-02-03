@@ -1,14 +1,29 @@
-import { ApiInterface } from 'constants/';
+import { ApiInterface, ProductType } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
 import { ToolTip } from './ToolTip';
 
-export const RoomImage = ({ apiData }: ApiInterface) => {
+interface Props {
+  apiData: { id: number; imageUrl: string; productList: ProductType[] };
+  currentProduct: number;
+  setCurrentProduct: (item: any) => void;
+}
+
+export const RoomImage = ({
+  apiData,
+  currentProduct,
+  setCurrentProduct,
+}: Props) => {
   return (
     <ImageContainer>
       <img src={apiData.imageUrl} alt='img' />
       {apiData.productList.map((list) => (
-        <ToolTip key={list.productId} product={list} />
+        <ToolTip
+          key={list.productId}
+          product={list}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+        />
       ))}
     </ImageContainer>
   );

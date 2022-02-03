@@ -6,19 +6,31 @@ import { ProductType } from 'constants/';
 
 type Props = {
   product: ProductType;
-  // currentProduct: number;
-  // setCurrentProduct: (item: any) => void;
+  currentProduct: number;
+  setCurrentProduct: (item: any) => void;
 };
 
-export const ToolTip = ({ product }: Props) => {
+export const ToolTip = ({
+  product,
+  currentProduct,
+  setCurrentProduct,
+}: Props) => {
+  const handleClick = () => {
+    if (product.productId === currentProduct) {
+      setCurrentProduct(0);
+      return;
+    }
+    setCurrentProduct(product.productId);
+  };
   return (
     <ToolTipBox
       className={product.productName}
       x={product.pointX}
       y={product.pointY}
+      onClick={handleClick}
     >
       <img src={TooltipBadge} alt='tooltipBadge' />
-      <BiSearch />
+      {currentProduct === product.productId ? <BiX /> : <BiSearch />}
     </ToolTipBox>
   );
 };
