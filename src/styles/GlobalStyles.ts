@@ -21,6 +21,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 	box-sizing: border-box;
+	background-color : #ffffff;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
