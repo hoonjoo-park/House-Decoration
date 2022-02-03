@@ -16,7 +16,19 @@ export type ProductType = {
   productName: string;
 };
 
-export interface Props {
+export type ProductIdType = {
+  productId: number;
+};
+
+export type StateProps = {
+  currentProduct: number;
+};
+
+export type setStateProps = {
+  setCurrentProduct: () => void;
+};
+
+export interface ApiInterface {
   apiData: {
     id: number;
     imageUrl: string;

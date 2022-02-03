@@ -1,13 +1,28 @@
 import { ProductType } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
-
+import { Badge } from 'images';
 type Props = {
   product: ProductType;
+  currentProduct: string;
+  setCurrentProduct: (item: any) => void;
 };
 
-export const Product = ({ product }: Props) => {
-  return <ProductBox bg={product.imageUrl}></ProductBox>;
+export const Product = ({
+  product,
+  currentProduct,
+  setCurrentProduct,
+}: Props) => {
+  return (
+    <ProductBox bg={product.imageUrl}>
+      {product.discountRate > 0 && (
+        <DiscountBox>
+          <img src={Badge} alt='badge' />
+          <span>30%</span>
+        </DiscountBox>
+      )}
+    </ProductBox>
+  );
 };
 
 const ProductBox = styled.div<{ bg: string }>`
@@ -26,5 +41,22 @@ const ProductBox = styled.div<{ bg: string }>`
   }
   &:last-child {
     margin-right: 0;
+  }
+`;
+const DiscountBox = styled.div`
+  position: relative;
+  width: 1.5rem;
+  margin-right: 5px;
+  margin-left: auto;
+  img {
+    width: 1.5rem;
+  }
+  span {
+    position: absolute;
+    font-size: 5px;
+    color: #ffffff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -70%);
   }
 `;

@@ -1,14 +1,33 @@
-import { Props } from 'constants/';
+import { ProductType } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
 import { Product } from './Product';
 
-export const ProductList = ({ apiData }: Props) => {
+interface Props {
+  apiData: {
+    id: number;
+    imageUrl: string;
+    productList: ProductType[];
+  };
+  currentProduct: string;
+  setCurrentProduct: (product: any) => void;
+}
+
+export const ProductList = ({
+  apiData,
+  currentProduct,
+  setCurrentProduct,
+}: Props) => {
   console.log(apiData);
   return (
     <ListContainer>
       {apiData.productList.map((list) => (
-        <Product key={list.productId} product={list} />
+        <Product
+          key={list.productId}
+          product={list}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+        />
       ))}
     </ListContainer>
   );

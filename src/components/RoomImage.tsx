@@ -1,8 +1,8 @@
-import { Props } from 'constants/';
+import { ApiInterface } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
 
-export const RoomImage = ({ apiData }: Props) => {
+export const RoomImage = ({ apiData }: ApiInterface) => {
   return (
     <ImageContainer>
       <img src={apiData.imageUrl} alt='img' />
