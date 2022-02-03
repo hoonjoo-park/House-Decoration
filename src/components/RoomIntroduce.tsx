@@ -6,7 +6,7 @@ import { RoomImage } from './RoomImage';
 import axios from 'axios';
 export const RoomIntroduce = () => {
   const [apiData, setApiData] = useState<any>();
-  const [currentProduct, setCurrentProduct] = useState('');
+  const [currentProduct, setCurrentProduct] = useState(134225);
   useEffect(() => {
     const fetcher = async () => {
       const result = await axios.get(API);

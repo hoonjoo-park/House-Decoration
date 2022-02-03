@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Badge } from 'images';
 type Props = {
   product: ProductType;
-  currentProduct: string;
+  currentProduct: number;
   setCurrentProduct: (item: any) => void;
 };
 
@@ -14,7 +14,10 @@ export const Product = ({
   setCurrentProduct,
 }: Props) => {
   return (
-    <ProductBox bg={product.imageUrl}>
+    <ProductBox
+      className={product.productId === currentProduct ? 'active' : ''}
+    >
+      <img src={product.imageUrl} alt='productImage' />
       {product.discountRate > 0 && (
         <DiscountBox>
           <img src={Badge} alt='badge' />
@@ -25,16 +28,13 @@ export const Product = ({
   );
 };
 
-const ProductBox = styled.div<{ bg: string }>`
+const ProductBox = styled.div`
+  position: relative;
   flex-shrink: 0;
   width: 6rem;
   height: 6rem;
-  border: 0.5px solid #aaafb9;
   border-radius: 5px;
   margin: 0 0.5rem;
-  background-image: ${(props) => `url(${props.bg})`};
-  background-position: center;
-  background-size: cover;
   cursor: pointer;
   &:first-child {
     margin-left: 0;
@@ -42,13 +42,26 @@ const ProductBox = styled.div<{ bg: string }>`
   &:last-child {
     margin-right: 0;
   }
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 0.5px solid #aaafb9;
+  }
+  &.active {
+    background: linear-gradient(to bottom, #f86940 0%, #fc6685 100%);
+  }
+  &.active > img {
+    border: 2px solid transparent;
+  }
 `;
 const DiscountBox = styled.div`
-  position: relative;
+  position: absolute;
   width: 1.5rem;
-  margin-right: 5px;
-  margin-left: auto;
-  img {
+  top: 0;
+  right: 5px;
+  & > img {
     width: 1.5rem;
   }
   span {

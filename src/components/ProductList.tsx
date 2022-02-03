@@ -9,7 +9,7 @@ interface Props {
     imageUrl: string;
     productList: ProductType[];
   };
-  currentProduct: string;
+  currentProduct: number;
   setCurrentProduct: (product: any) => void;
 }
 
