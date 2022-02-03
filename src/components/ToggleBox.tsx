@@ -19,7 +19,7 @@ export const ToggleBox = ({
     maximumFractionDigits: 3,
   });
   const positionX = pointX < IMAGE_HEIGHT / 2 ? -130 : 0;
-  const positionY = pointY < IMAGE_WIDTH / 2 ? 0 : -100;
+  const positionY = pointY < IMAGE_WIDTH / 2 ? 0 : -95;
   return (
     <ToggleContainer
       className={product.productId === currentProduct ? 'active' : ''}

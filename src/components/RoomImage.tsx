@@ -1,7 +1,6 @@
 import { ProductType } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
-import { ToggleBox } from './ToggleBox';
 import { ToolTip } from './ToolTip';
 
 interface Props {
@@ -19,14 +18,12 @@ export const RoomImage = ({
     <ImageContainer>
       <img src={apiData.imageUrl} alt='img' />
       {apiData.productList.map((list, i) => (
-        <>
-          <ToolTip
-            key={list.productId}
-            product={list}
-            currentProduct={currentProduct}
-            setCurrentProduct={setCurrentProduct}
-          />
-        </>
+        <ToolTip
+          key={i * 99}
+          product={list}
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+        />
       ))}
     </ImageContainer>
   );

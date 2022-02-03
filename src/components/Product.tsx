@@ -25,7 +25,7 @@ export const Product = ({
       className={product.productId === currentProduct ? 'active' : ''}
       onClick={handleClick}
     >
-      <img src={product.imageUrl} alt='productImage' />
+      <img draggable='false' src={product.imageUrl} alt='productImage' />
       {product.discountRate > 0 && (
         <DiscountBox>
           <img src={Badge} alt='badge' />
