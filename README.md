@@ -6,6 +6,12 @@
 
 ---
 
+## 🥲 블로그 주소
+
+[https://hoonjoo-park.github.io/projects/preonboard/2.houseDecoration/](https://hoonjoo-park.github.io/projects/preonboard/2.houseDecoration/)
+
+---
+
 ## 💬 프로젝트 소개
 
 > 인테리어 서비스 플랫폼을 가정하고, 컴포넌트 내에서 가구 및 인테리어 용품 정보를 손 쉽게 확인할 수 있는 서비스를 개발해 보았습니다.
