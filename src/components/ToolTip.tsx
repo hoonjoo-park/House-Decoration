@@ -2,7 +2,7 @@ import { TooltipBadge } from 'images';
 import React from 'react';
 import styled from 'styled-components';
 import { BiSearch, BiX } from 'react-icons/bi';
-import { ProductType } from 'constants/';
+import { ProductType, TOOLTIP } from 'constants/';
 import { ToggleBox } from './ToggleBox';
 
 type Props = {
@@ -33,24 +33,26 @@ export const ToolTip = ({
       >
         <img src={TooltipBadge} alt='tooltipBadge' />
         {currentProduct === product.productId ? <BiX /> : <BiSearch />}
-        <ToggleBox
-          key={product.productId}
-          product={product}
-          pointX={product.pointX}
-          pointY={product.pointY}
-          currentProduct={currentProduct}
-        />
       </ToolTipBox>
+      <ToggleBox
+        key={product.productId}
+        product={product}
+        pointX={product.pointX}
+        pointY={product.pointY}
+        currentProduct={currentProduct}
+      />
     </>
   );
 };
 
 const ToolTipBox = styled.div<{ x: number; y: number }>`
   position: absolute;
-  width: 1.3rem;
-  height: 1.3rem;
-  opacity: 0.9;
-  transform: ${(props) => `translate(${props.y * 1.28}px,${props.x * 1.22}px)`};
+  width: ${TOOLTIP.width}rem;
+  height: ${TOOLTIP.height}rem;
+  opacity: 0.8;
+  z-index: 0;
+  left: ${(props) => props.y * 1.27}px;
+  top: ${(props) => props.x * 1.1}px;
   cursor: pointer;
   & > img {
     width: 100%;

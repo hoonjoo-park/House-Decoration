@@ -6,8 +6,13 @@ export const API_DATA = axios.get(API);
 
 export const PRODUCT_WIDTH = 6;
 export const PRODUCT_MARGIN = 1;
-export const IMAGE_WIDTH = 608;
-export const IMAGE_HEIGHT = 758;
+export const IMAGE_WIDTH = 680;
+export const IMAGE_HEIGHT = 600;
+
+export const TOOLTIP = {
+  width: 1.3,
+  height: 1.3,
+};
 
 export type ProductType = {
   discountRate: number;

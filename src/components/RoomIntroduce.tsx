@@ -37,7 +37,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 40rem;
   min-height: 90vh;
-  margin: 5rem 0;
+  margin: 3rem 0;
   padding: 1em;
   border-radius: 5px;
   box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.6);

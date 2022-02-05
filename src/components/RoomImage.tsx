@@ -16,7 +16,7 @@ export const RoomImage = ({
 }: Props) => {
   return (
     <ImageContainer>
-      <img src={apiData.imageUrl} alt='img' />
+      <MainImage src={apiData.imageUrl} alt='img' />
       {apiData.productList.map((list, i) => (
         <ToolTip
           key={i * 99}
@@ -31,12 +31,16 @@ export const RoomImage = ({
 
 const ImageContainer = styled.div`
   position: relative;
+  flex: 1;
+  flex-shrink: 0;
   display: flex;
   width: 100%;
+  min-height: 40rem;
   border-radius: 5px;
-  & > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px 5px 0 0;
-  }
+`;
+const MainImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px 5px 0 0;
 `;

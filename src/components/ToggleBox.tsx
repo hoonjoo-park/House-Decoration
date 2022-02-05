@@ -1,4 +1,4 @@
-import { IMAGE_HEIGHT, IMAGE_WIDTH, ProductType } from 'constants/';
+import { IMAGE_HEIGHT, IMAGE_WIDTH, ProductType, TOOLTIP } from 'constants/';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,13 +18,17 @@ export const ToggleBox = ({
   const priceWithComma = product.priceDiscount.toLocaleString('en', {
     maximumFractionDigits: 3,
   });
-  const positionX = pointX < IMAGE_HEIGHT / 2 ? -130 : 0;
-  const positionY = pointY < IMAGE_WIDTH / 2 ? 0 : -95;
+  const tsY =
+    pointX < IMAGE_HEIGHT / 2 ? TOOLTIP.height + 0.2 + 'rem' : '-105%';
+  const tsX =
+    pointY < IMAGE_WIDTH / 2 ? 0 : `calc(-100% + ${TOOLTIP.width}rem)`;
   return (
     <ToggleContainer
       className={product.productId === currentProduct ? 'active' : ''}
-      x={positionX}
-      y={positionY}
+      x={pointX}
+      y={pointY}
+      tsX={tsX}
+      tsY={tsY}
     >
       <ToggleImage src={product.imageUrl} alt='toggleImage' />
       <RightBox>
@@ -40,7 +44,12 @@ export const ToggleBox = ({
   );
 };
 
-const ToggleContainer = styled.div<{ x: number; y: number }>`
+const ToggleContainer = styled.div<{
+  x: number;
+  y: number;
+  tsX: string | number;
+  tsY: string | number;
+}>`
   display: none;
   position: absolute;
   width: 14rem;
@@ -48,7 +57,10 @@ const ToggleContainer = styled.div<{ x: number; y: number }>`
   padding: 0.5em;
   background-color: #ffffff;
   border-radius: 10px;
-  transform: ${(props) => `translate(${props.y}%,${props.x}%)`};
+  left: ${(props) => props.y * 1.27}px;
+  top: ${(props) => props.x * 1.1}px;
+  transform: ${(props) => `translate(${props.tsX}, ${props.tsY})`};
+  z-index: 5;
   &.active {
     display: flex;
   }
